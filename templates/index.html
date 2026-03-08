@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voice AI Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Voice AI Assistant</h1>
+    <p>Ask anything using AI</p>
+
+    <div class="chatbox">
+
+        <input id="text" placeholder="Type your question..." />
+
+        <button onclick="send()">Ask</button>
+
+        <button onclick="startVoice()">🎤 Speak</button>
+
+    </div>
+
+    <div id="response"></div>
+
+</div>
+
+
+<script>
+
+function send(){
+
+    let text = document.getElementById("text").value
+
+    fetch("/ask",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({message:text})
+    })
+
+    .then(res => res.json())
+
+    .then(data=>{
+        document.getElementById("response").innerText = data.reply
+    })
+
+}
+
+
+function startVoice(){
+
+    const recognition = new webkitSpeechRecognition()
+
+    recognition.lang = "en-US"
+
+    recognition.onresult = function(event){
+
+        let voiceText = event.results[0][0].transcript
+
+        document.getElementById("text").value = voiceText
+
+        send()
+
+    }
+
+    recognition.start()
+
+}
+
+</script>
+
+</body>
+</html>
