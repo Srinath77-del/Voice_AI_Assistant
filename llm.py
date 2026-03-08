@@ -1,7 +1,7 @@
 from groq import Groq
 
 # Put your Groq API key here
-client = Groq(api_key="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")
+client = Groq(api_key="API_KEY = "YOUR_GROQ_API_KEY")
 
 def generate_response(question):
     try:
