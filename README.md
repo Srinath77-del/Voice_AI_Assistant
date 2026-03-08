@@ -29,4 +29,18 @@ A simple Voice AI Assistant web application that allows users to interact with a
 ---
 
 ## Project Structure
-
+Voice_AI_Assistant
+│
+├── app.py
+├── main.py
+├── llm.py
+├── asr.py
+├── audio_stream.py
+│
+├── templates
+│ └── index.html
+│
+├── static
+│ └── style.css
+│
+└── README.md
